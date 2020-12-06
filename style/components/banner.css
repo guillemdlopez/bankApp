@@ -1,0 +1,29 @@
+.banner {
+  text-align: left;
+  height: 100vh;
+  background: var(--main-background-color);
+}
+
+.banner h1 {
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 60px;
+  margin: 0px;
+  line-height: 60px;
+}
+
+.banner-content-app-description {
+  line-height: 35px;
+  width: 50%;
+}
+
+.banner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 25vh;
+}
+
+.banner-form {
+  text-align: center;
+}

@@ -1,0 +1,64 @@
+/* COMPONENTS */
+@import url(components/banner.css);
+@import url(components/buttons.css);
+@import url(components/navbar.css);
+@import url(components/form.css);
+@import url(components/alert.css);
+
+/* OPEN SANS */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,600;0,700;0,800;1,400&display=swap');
+
+
+:root {
+  --main-color: #844CFF;
+  --main-background-color: #F9F6FF;
+}
+
+/* HIDDEN CLASSES */
+.hidden-effect {
+  visibility: none;
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+.hidden {
+  display: none;
+}
+
+/* PAGE CONFIG */
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4 {
+  font-weight: bold;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  font-size: 18px;
+  background-color: var(--main-background-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* APPLICATION */
+
+.welcome-message {
+  font-size: 40px;
+  margin-bottom: 0px;
+}
+
+.current-date {
+  margin: 0px;
+}
+
+.small {
+  font-size: 14px;
+  font-weight: 300;
+}
