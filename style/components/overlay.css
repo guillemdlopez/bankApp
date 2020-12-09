@@ -1,1 +1,11 @@
-overlay.css
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 78%;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  transition: all 0.5s;
+}

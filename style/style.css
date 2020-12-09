@@ -48,6 +48,11 @@ a {
   transform: translateY(100px);
 }
 
+.hidden-overlay {
+  visibility: none;
+  opacity: 0;
+}
+
 .hidden {
   display: none;
 }

@@ -36,18 +36,20 @@ const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 
 const months = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
 
-const banner = document.querySelector('.banner')
-const formDiv = document.querySelector('.banner-form')
-const bannerContentDiv = document.querySelector('.banner-content-app-description')
+const banner = document.querySelector('.banner');
+const formDiv = document.querySelector('.banner-form');
+const bannerContentDiv = document.querySelector('.banner-content-app-description');
 const inputUsername = document.querySelector('.input-username');
 const inputPassword = document.querySelector('.input-password');
 const btnGetStarted = document.querySelector('.btn-start');
 const loginForm = document.querySelector('.login-form');
 const welcomeMsg = document.querySelector('.welcome-message');
-const currentDate = document.querySelector('.current-date')
-const alert = document.querySelector('.alert')
-const alertSuccess = document.querySelector('.alert-success')
-const btnCloseAlert = document.querySelectorAll('.close-icon')
+const currentDate = document.querySelector('.current-date');
+const alert = document.querySelector('.alert');
+const alertSuccess = document.querySelector('.alert-success');
+const btnCloseAlert = document.querySelectorAll('.close-icon');
+const btnTransfer = document.querySelector('.transfer-money');
+const overlay = document.querySelector('.overlay');
 
 console.log(welcomeMsg, currentDate);
 
@@ -124,4 +126,8 @@ btnCloseAlert.forEach(btn => {
       alertSuccess.classList.add('hidden-effect')
     }
   })
+})
+
+btnTransfer.addEventListener('click', (e) => {
+  overlay.classList.remove('hidden');
 })
