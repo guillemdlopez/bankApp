@@ -6,28 +6,28 @@ const account1 = {
   owner: 'Guillem Delás',
   username: 'guillemdlopez',
   pin: 1111,
-  movements: [200, 400, 600, 1000, 10],
+  movements: [200, 400, 600, 1000, 10, -230],
 }
 
 const account2 = {
   owner: 'Antonio Morales',
   username: 'amoralro1996',
   pin: 2222,
-  movements: [50, 600, 1000, 34, 789],
+  movements: [50, 600, 1000, 34, 789, -500],
 }
 
 const account3 = {
   owner: 'Guillem Delás',
   username: 'guillemdlopez',
   pin: 3333,
-  movements: [200, 400, 600, 1000, 10],
+  movements: [200, 400, 600, 1000, 10, -340],
 }
 
 const account4 = {
   owner: 'Steven Tyler',
   username: 'steven1973',
   pin: 4444,
-  movements: [200, 400, 600, 1000, 10],
+  movements: [200, 400, 600, 1000, 10, -29],
 }
 
 const accounts = [account1, account2, account3, account4]
@@ -45,6 +45,9 @@ const btnGetStarted = document.querySelector('.btn-start');
 const loginForm = document.querySelector('.login-form');
 const welcomeMsg = document.querySelector('.welcome-message');
 const currentDate = document.querySelector('.current-date')
+const alert = document.querySelector('.alert')
+const alertSuccess = document.querySelector('.alert-success')
+const btnCloseAlert = document.querySelectorAll('.close-icon')
 
 console.log(welcomeMsg, currentDate);
 
@@ -91,13 +94,34 @@ loginForm.addEventListener('submit', (e) => {
   if (currentAccount?.pin === Number(inputPassword.value)) {
     console.log(inputPassword.value)
     banner.classList.add('hidden')
+    document.querySelector('.application').classList.remove('hidden')
 
     // display welcome msg
-    welcomeMsg.innerHTML = `Welcome back, <strong> <br> ${currentAccount.owner.split(' ')[0]} </strong>`;
+    welcomeMsg.innerHTML = `Welcome back, <strong> ${currentAccount.owner.split(' ')[0]} </strong>`;
+
+    // display alert
+    alertSuccess.classList.remove('hidden-effect');
+    alertSuccess.style.transition = 'all 1s';
 
     // display time
     const date = new Date()
-    currentDate.textContent = `${days[date.getDay()].slice(0, 3)}. ${date.getDate()} ${months[date.getMonth()]} of 2020, ${date.getHours()}:${date.getMinutes()}h`
-  }
+    currentDate.textContent = `${days[date.getDay()].slice(0, 3)}. ${date.getDate()}
+    ${months[date.getMonth()]} of ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}h`
+
+  } else {
+    alert.classList.remove('hidden-effect');
+    alert.style.transition = 'all 1s';
+  };
 })
 
+
+btnCloseAlert.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    console.log(e.target)
+    if (e.target.closest('.alert')) {
+      alert.classList.add('hidden-effect')
+    } else if (e.target.closest('.alert-success')) {
+      alertSuccess.classList.add('hidden-effect')
+    }
+  })
+})

@@ -1,0 +1,35 @@
+.account-info-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.account-card {
+  box-shadow: 0px 4px 40px rgba(0,0,0,0.25);
+  padding: 20px 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.amount {
+  text-align: right;
+}
+
+.movements-cards {
+  overflow: scroll;
+  background: white;
+  height: 350px;
+  border-radius: 8px;
+}
+
+.movement-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+  padding: 20px 20px;
+}
+
+.movement-amount {
+  font-weight: 600;
+}

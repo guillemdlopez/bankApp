@@ -2,6 +2,7 @@
   text-align: left;
   height: 100vh;
   background: var(--main-background-color);
+  position: relative;
 }
 
 .banner h1 {

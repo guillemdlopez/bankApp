@@ -1,0 +1,17 @@
+.movements-type-withdraw, .movements-type-deposit {
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.movements-type-withdraw {
+  color: var(--color-withdraws);
+  border: 1px solid var(--color-withdraws);
+}
+
+.movements-type-deposit {
+  color: var(--color-deposit);
+  border: 1px solid var(--color-deposit);
+}

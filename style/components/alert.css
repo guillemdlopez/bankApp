@@ -1,0 +1,39 @@
+.alert, .alert-success {
+  position: absolute;
+  right: 10px;
+  bottom: 27px;
+  font-weight: 600;
+  font-size: 16px;
+  background: white;
+  padding: 10px 24px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 40px rgba(0,0,0,0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.warning {
+  text-align: center;
+  font-size: 19px;
+  color: orange;
+  margin-right: 10px;
+}
+
+.success {
+  text-align: center;
+  font-size: 19px;
+  color: green;
+  margin-right: 10px;
+}
+
+.close-icon {
+  margin-left: 20px;
+  font-size: 40px;
+  opacity: 0.2;
+  cursor: pointer;
+}
+
+.close-icon:hover {
+  opacity: 1;
+}
