@@ -27,6 +27,15 @@
   border-radius: 0px 0px 8px 8px;
 }
 
+.avatar-info {
+  display: flex;
+  align-items: center;
+}
+
+.info {
+  margin-left: 20px;
+}
+
 .btns-confirmation-cancel p {
   margin: 20px 0px 20px 0px;
 }

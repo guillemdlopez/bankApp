@@ -62,7 +62,7 @@ a {
 
 .move-up {
   transform: translateY(-200px);
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 
 .disabled-card {

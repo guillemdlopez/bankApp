@@ -6,3 +6,8 @@
   object-fit: cover;
   object-position: top;
 }
+
+.transfer-modal-confirmation .avatar {
+  width: 100px;
+  height: 100px;
+}

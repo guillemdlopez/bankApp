@@ -29,6 +29,7 @@ const account4 = {
   owner: 'Steven Tyler',
   username: 'steven1973',
   pin: 4444,
+  avatar: 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Steven_Tyler_by_Gage_Skidmore_3.jpg',
   movements: [200, 400, 600, 1000, 10, -29],
 }
 
@@ -56,7 +57,11 @@ const modalTransfer = document.querySelector('.transfer-modal');
 const transferForm = document.querySelector('.transfer-modal-form');
 const inputUsernameTransferModal = document.querySelector('.input-username-transfer-modal');
 const inputAmountTransferModal = document.querySelector('.input-amount-transfer-modal');
-console.log(alert);
+const application = document.querySelector('.application-content');
+const avatar = document.querySelector('.avatar');
+const btnLogOut = document.querySelector('.log-out');
+const sideBarMenu = document.querySelector('.sidebar-menu');
+console.log(alert, avatar, btnLogOut);
 
 
 console.log(inputUsernameTransferModal, inputAmountTransferModal);
@@ -65,9 +70,9 @@ console.log(inputUsernameTransferModal, inputAmountTransferModal);
 
 // FANCY BANNER //
 const initBanner = function (el) {
-  el.classList.remove('hidden-effect')
+  el.classList.remove('hidden-effect');
   el.style.transform = 'translateY(0px)';
-  el.style.transition = 'all 1s'
+  el.style.transition = 'all 1s';
 }
 
 const displayForm = function (entries) {
@@ -91,11 +96,11 @@ const findUser = (user) => accounts.find(acc => user === acc.username)
 const timer = (sec, htmlElement) => {
   setTimeout(() => {
     htmlElement.classList.add('hidden-effect');
-    htmlElement.style.transition = 'all 1s';
+    htmlElement.style.transition = 'all 0.5s';
 
     setTimeout(() => {
       htmlElement.remove();
-    }, 1000)
+    }, 500)
   }, sec * 1000)
 }
 
@@ -108,7 +113,7 @@ const displayWarningAlert = (msg) => {
       <i class="close-icon">&times</i>
     </div>`;
 
-  overlay.insertAdjacentHTML('beforeend', html);
+  application.insertAdjacentHTML('beforeend', html);
   customizedAlert = document.querySelector('.customized-warning-alert');
   timer(2, customizedAlert);
 }
@@ -117,41 +122,50 @@ const displaySuccessAlert = (msg) => {
   const html = `
     <div class="alert-success customized-success-alert">
       <i class="fas fa-check-circle success"></i>
-      <p>Correct credentials!</p>
+      <p>${msg}</p>
       <i class="close-icon">&times</i>
     </div>`;
-    overlay.insertAdjacentHTML('beforeend', html);
+
+    application.insertAdjacentHTML('beforeend', html);
     customizedAlert = document.querySelector('.customized-success-alert');
     timer(2, customizedAlert);
 }
-let confirmationBtn;
-let cancelBtn;
+
+let cancelConfirmDiv;
+let transferModalConfirmation;
+
 const displayConfirmationMsg = (imgPath, amount, userOwner) => {
   const html = `
     <div class="modal transfer-modal-confirmation">
-      <div class="info-user">
-        <h2>Confirmation</h2>
-        <img src=${imgPath} class="avatar" alt="">
-        <p><strong>Send</strong>: ${amount} €</p>
-        <p><strong>To</strong>: ${userOwner}</p>
-      </div>
-      <div class="btns-confirmation-cancel">
-        <div class="cancel">
-          <p>Cancel</p>
+        <div class="info-user">
+          <h2>Confirmation</h2>
+          <div class="avatar-info">
+            <img src=${imgPath} class="avatar" alt="">
+            <div class="info">
+              <p><strong>Send</strong>: ${amount} €</p>
+              <p><strong>To</strong>: ${userOwner}</p>
+            </div>
+          </div>
         </div>
-        <div class="confirm">
-          <p>Confirm</p>
+        <div class="btns-confirmation-cancel">
+          <div class="cancel">
+            <p>Cancel</p>
+          </div>
+          <div class="confirm">
+            <p>Confirm</p>
+          </div>
         </div>
-      </div>
-    </div>`
+      </div> `
 
     overlay.insertAdjacentHTML('beforeend', html);
+    cancelConfirmDiv = document.querySelector('.btns-confirmation-cancel');
+    transferModalConfirmation = document.querySelector('.transfer-modal-confirmation');
+    cancelConfirm();
 }
 
-// const displayConfirmation(user, amount) => {
-//   const html
-// }
 
+application.style.display = 'none';
+sideBarMenu.style.display = 'none';
 
 // LOG IN //
 btnGetStarted.addEventListener('click', (e) => {
@@ -163,6 +177,7 @@ let currentAccount;
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
+
   const usernameValue = inputUsername.value;
   const passwordValue = inputPassword.value;
 
@@ -172,14 +187,16 @@ loginForm.addEventListener('submit', (e) => {
   if (currentAccount?.pin === Number(inputPassword.value)) {
     console.log(inputPassword.value)
     banner.classList.add('hidden')
-    document.querySelector('.application').classList.remove('hidden')
+    application.style.display = '';
+    sideBarMenu.style.display = '';
 
     // display welcome msg
     welcomeMsg.innerHTML = `Welcome back, <strong> ${currentAccount.owner.split(' ')[0]} </strong>`;
+    avatar.src = `${currentAccount.avatar}`;
 
     // display alert
-    alertSuccess.classList.remove('hidden-effect');
-    alertSuccess.style.transition = 'all 1s';
+    displaySuccessAlert('Correct credentials!')
+    // alertSuccess.style.transition = 'all 1s';
 
     // display time
     const date = new Date()
@@ -187,8 +204,8 @@ loginForm.addEventListener('submit', (e) => {
     ${months[date.getMonth()]} of ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}h`
 
   } else {
-    alert.classList.remove('hidden-effect');
-    alert.style.transition = 'all 1s';
+    displayWarningAlert('This account does not exist! Do you already have an account?')
+    // alert.style.transition = 'all 1s';
   };
 })
 
@@ -204,9 +221,10 @@ btnCloseAlert.forEach(btn => {
   })
 })
 
-
 btnTransfer.addEventListener('click', (e) => {
   const btn = e.target.closest('div');
+  inputUsernameTransferModal.value = '';
+  inputAmountTransferModal.value = '';
 
   if (overlay.classList.contains('hidden') && modalTransfer.classList.contains('hidden')) {
     overlay.classList.remove('hidden');
@@ -220,23 +238,78 @@ btnTransfer.addEventListener('click', (e) => {
 
 transferForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  // console.log(currentAccount);
-  const user = inputUsernameTransferModal.value
-  const amount = inputAmountTransferModal.value
-  const userTo = findUser(user)
 
-  if (userTo) {
-    console.log(`${user} exists!`)
+  const user = inputUsernameTransferModal.value;
+  const amount = inputAmountTransferModal.value;
+
+  // get the user we are transfering money to
+  const userTo = findUser(user);
+  console.log(currentAccount);
+
+  if (userTo.username === currentAccount.username) {
+    // display alert
+    displayWarningAlert('You cannot transfer money to yourself!');
+
+  } else if (userTo) {
+    //move the transfer modal form up
     modalTransfer.classList.add('move-up');
     modalTransfer.classList.add('disabled-card');
+
+    //clear input fields
     inputAmountTransferModal.blur();
-    displayConfirmationMsg(userTo.avatar, amount, user);
+    inputUsernameTransferModal.blur();
+
+    //display confirmation message
+    displayConfirmationMsg(userTo.avatar, amount, userTo.owner);
   } else {
     console.log(`${user} does not exist!`)
     displayWarningAlert('Wrong credentials! This account does not exist')
   }
 })
 
+overlay.addEventListener('click', (e) => {
+  if (!modalTransfer.classList.contains('hidden') && transferModalConfirmation) {
+    modalTransfer.classList.add('hidden');
+    modalTransfer.classList.remove('move-up', 'disabled-card');
+    transferModalConfirmation.remove();
+    overlay.classList.add('hidden');
+  } else if (!modalTransfer.classList.contains('hidden')) {
+    modalTransfer.classList.add('hidden');
+    overlay.classList.add('hidden');
+  }
+})
 
+const cancelConfirm = function() {
+  cancelConfirmDiv.addEventListener('click', (e) => {
+    console.log(e.target);
 
+    if (e.target.closest('div').className === 'confirm') {
+      modalTransfer.classList.remove('move-up', 'disabled-card');
+      modalTransfer.classList.add('hidden');
+      transferModalConfirmation.remove();
+      overlay.classList.add('hidden');
+
+      displaySuccessAlert('Operation fulfilled!');
+    } else {
+      modalTransfer.classList.remove('move-up', 'disabled-card');
+      modalTransfer.classList.add('hidden');
+      transferModalConfirmation.remove();
+      overlay.classList.add('hidden');
+
+      displayWarningAlert('Operation canceled!')
+    }
+  })
+}
+
+// LOG OUT //
+btnLogOut.addEventListener('click', (e) => {
+  const icon = e.target.classList.contains('fa-power-off');
+  if (!icon) return;
+  currentAccount = '';
+  application.style.display = 'none';
+  sideBarMenu.style.display = 'none';
+  banner.classList.remove('hidden');
+  inputUsername.value = '';
+  inputPassword.value = '';
+})
 
