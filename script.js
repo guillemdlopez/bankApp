@@ -93,7 +93,7 @@ bannerObserver.observe(banner)
 
 const findUser = (user) => accounts.find(acc => user === acc.username)
 
-const timer = (sec, htmlElement) => {
+const timer = (sec = 2, htmlElement) => {
   setTimeout(() => {
     htmlElement.classList.add('hidden-effect');
     htmlElement.style.transition = 'all 0.5s';
@@ -105,7 +105,7 @@ const timer = (sec, htmlElement) => {
 }
 
 let customizedAlert;
-const displayWarningAlert = (msg) => {
+const displayWarningAlert = (msg, el = application) => {
   const html = `
     <div class="alert customized-warning-alert">
       <i class="fas fa-exclamation-triangle warning"></i>
@@ -113,7 +113,7 @@ const displayWarningAlert = (msg) => {
       <i class="close-icon">&times</i>
     </div>`;
 
-  application.insertAdjacentHTML('beforeend', html);
+  el.insertAdjacentHTML('beforeend', html);
   customizedAlert = document.querySelector('.customized-warning-alert');
   timer(2, customizedAlert);
 }
@@ -204,7 +204,7 @@ loginForm.addEventListener('submit', (e) => {
     ${months[date.getMonth()]} of ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}h`
 
   } else {
-    displayWarningAlert('This account does not exist! Do you already have an account?')
+    displayWarningAlert('This account does not exist! Do you already have an account?', banner)
     // alert.style.transition = 'all 1s';
   };
 })
