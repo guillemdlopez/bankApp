@@ -19,9 +19,10 @@ const account2 = {
 }
 
 const account3 = {
-  owner: 'Guillem Delás',
-  username: 'guillemdlopez',
+  owner: 'Ann Wilson',
+  username: 'annwilson',
   pin: 3333,
+  avatar: 'https://i.pinimg.com/564x/09/e9/cb/09e9cb06ac99fc03065b2a032235b7c9.jpg',
   movements: [200, 400, 600, 1000, 10, -340],
 }
 
@@ -62,7 +63,8 @@ const avatar = document.querySelector('.avatar');
 const btnLogOut = document.querySelector('.log-out');
 const sideBarMenu = document.querySelector('.sidebar-menu');
 const movementsDiv = document.querySelector('.movements-cards');
-console.log(alert, avatar, btnLogOut, movementsDiv);
+const labelOwner = document.querySelector('.currentAccount-owner')
+console.log(alert, avatar, btnLogOut, movementsDiv, labelOwner);
 
 
 console.log(inputUsernameTransferModal, inputAmountTransferModal);
@@ -101,7 +103,7 @@ const timer = (sec = 2, htmlElement) => {
 
     setTimeout(() => {
       htmlElement.remove();
-    }, 500)
+    }, 200)
   }, sec * 1000)
 }
 
@@ -165,6 +167,7 @@ const displayConfirmationMsg = (imgPath, amount, userOwner) => {
 }
 
 const displayMovements = function (movs) {
+  movementsDiv.innerHTML = '';
 
   movs.forEach((mov, i) => {
       const html = `
@@ -208,8 +211,9 @@ loginForm.addEventListener('submit', (e) => {
     application.style.display = '';
     sideBarMenu.style.display = '';
 
-    // display welcome msg
+    // display welcome msg, name and image
     welcomeMsg.innerHTML = `Welcome back, <strong> ${currentAccount.owner.split(' ')[0]} </strong>`;
+    labelOwner.textContent = `${currentAccount.owner}`
     avatar.src = `${currentAccount.avatar}`;
 
     // display alert
@@ -228,8 +232,6 @@ loginForm.addEventListener('submit', (e) => {
     displayWarningAlert('This account does not exist! Do you already have an account?', banner)
     // alert.style.transition = 'all 1s';
   };
-
-  inputUsername.value = inputPassword.value = '';
 })
 
 
@@ -245,7 +247,7 @@ btnCloseAlert.forEach(btn => {
 })
 
 btnTransfer.addEventListener('click', (e) => {
-  const btn = e.target.closest('div');
+  // const btn = e.target.classList.contains('i');
   inputUsernameTransferModal.value = inputAmountTransferModal.value = '';
 
   if (overlay.classList.contains('hidden') && modalTransfer.classList.contains('hidden')) {
@@ -315,7 +317,8 @@ const cancelConfirm = function() {
 
       displaySuccessAlert('Operation fulfilled!');
       currentAccount.movements.push(-+amount);
-      receiver.movements.push(+amount)
+      receiver.movements.push(+amount);
+      displayMovements(currentAccount.movements);
 
     } else {
       modalTransfer.classList.remove('move-up', 'disabled-card');
@@ -323,7 +326,7 @@ const cancelConfirm = function() {
       transferModalConfirmation.remove();
       overlay.classList.add('hidden');
 
-      displayWarningAlert('Operation canceled!')
+      displayWarningAlert('Operation cancelled!')
     }
   })
 }
@@ -336,5 +339,7 @@ btnLogOut.addEventListener('click', (e) => {
   application.style.display = 'none';
   sideBarMenu.style.display = 'none';
   banner.classList.remove('hidden');
+
+  inputUsername.value = inputPassword.value = '';
 })
 
