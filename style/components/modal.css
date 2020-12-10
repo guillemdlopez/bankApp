@@ -1,6 +1,48 @@
 .modal {
   border-radius: 8px;
   background: white;
-  width: 40%;
-  padding: 20px 20px;
+  width: 30%;
+  padding: 30px;
+  z-index: 1000;
+  position: fixed;
+}
+
+.transfer-modal {
+  top: 242px;
+  left: 332px;
+}
+
+.transfer-modal-confirmation {
+  top: 396px;
+  left: 15px;
+  padding: 0px;
+  width: 44%;
+}
+
+.transfer-modal-confirmation .btns-confirmation-cancel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-radius: 0px 0px 8px 8px;
+}
+
+.btns-confirmation-cancel p {
+  margin: 20px 0px 20px 0px;
+}
+
+.cancel, .confirm {
+  font-weight: bold;
+  padding: 0px 30px 0px;
+  width: 50%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.confirm {
+  border-left: 1px solid lightgray;
+}
+
+.transfer-modal-confirmation .info-user {
+  padding: 30px;
 }

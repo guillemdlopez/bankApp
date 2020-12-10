@@ -11,10 +11,6 @@
   border-radius: 8px;
 }
 
-.amount {
-  text-align: right;
-}
-
 .movements-cards {
   overflow: scroll;
   background: white;
@@ -27,7 +23,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid lightgray;
-  padding: 20px 20px;
+  padding: 10px 20px;
 }
 
 .movement-amount {

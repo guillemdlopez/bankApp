@@ -24,7 +24,7 @@
   </div> -->
 
   <!--BANNER -->
-  <div class="banner">
+  <div class="banner hidden">
     <div class="container">
 
       <!--BANNER CONTENT-->
@@ -99,15 +99,15 @@
       <div class="account-info-cards">
         <div class="account-card">
           <p>Balance</p>
-          <h2 class="amount">2.000, 00 €</h2>
+          <h1 class="amount">2.000, 00 €</h1>
         </div>
         <div class="account-card">
           <p>Expenses</p>
-          <h2 class="amount">-100, 00 €</h2>
+          <h1 class="amount">-100, 00 €</h1>
         </div>
         <div class="account-card">
           <p>Icome</p>
-          <h2 class="amount">3.000, 00 €</h2>
+          <h1 class="amount">3.000, 00 €</h1>
         </div>
       </div>
       <div class="alert-success hidden-effect">
@@ -183,13 +183,55 @@
       <div class="modal transfer-modal hidden">
         <h2>Transfer money</h2>
 
-        <form action="">
+        <!-- TRANSFER MONEY MODAL -->
+        <form action="" class="transfer-modal-form">
           <div class="form-input-row">
-            <label for="">To whom?</label>
-            <input type="text" class="" placeholder="username" class="input">
+            <label>To whom?</label>
+            <input type="text" placeholder="username" class="input-username-transfer-modal">
           </div>
+          <div class="form-input-row">
+            <label class="label-amount">Amount</label>
+            <input type="text" placeholder="amount" class="input-amount-transfer-modal">
+          </div>
+          <input type="submit" value="Send" class="btn-submit">
         </form>
       </div>
+
+      <!-- CONFIRMATION -->
+      <!-- <div class="modal transfer-modal-confirmation">
+        <div class="info-user">
+          <h2>Confirmation</h2>
+          <img src="images/profile.jpg" class="avatar" alt="">
+          <p><strong>Send</strong>: 100 €</p>
+          <p><strong>To</strong>: Guillem Delás López</p>
+        </div>
+        <div class="btns-confirmation-cancel">
+          <div class="cancel">
+            <p>Cancel</p>
+          </div>
+          <div class="confirm">
+            <p>Confirm</p>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- REQUEST A LOAN MODAL -->
+      <div class="modal request-loan-modal hidden">
+        <h2>Transfer money</h2>
+
+        <form action="">
+          <div class="form-input-row">
+            <label>To whom?</label>
+            <input type="text" placeholder="username" class="input">
+          </div>
+          <div class="form-input-row">
+            <label class="label-amount">Amount</label>
+            <input type="text" placeholder="amount" class="input-amount">
+          </div>
+          <input type="submit" value="Send" class="btn-submit">
+        </form>
+      </div>
+
     </div>
   </div>
 </body>

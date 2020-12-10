@@ -1,12 +1,10 @@
-.login-form .input, .input {
+input {
   width: 100%;
   height: 40px;
   border: none;
   border-bottom: 1px solid lightgray;
   background: white;
 }
-
-
 
 .input-password {
   margin-top: 20px;
@@ -26,3 +24,7 @@
 }
 
 
+/* TRANSFER MONEY */
+.form-input-row {
+  margin-bottom: 20px;
+}
