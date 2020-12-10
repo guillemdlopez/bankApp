@@ -7,7 +7,7 @@ const account1 = {
   username: 'guillemdlopez',
   pin: 1111,
   avatar: 'images/profile.jpg',
-  movements: [200, 400, 600, 1000, 10, -230],
+  movements: [-200, 400, 600, -1000, 10, -230],
 }
 
 const account2 = {
@@ -61,7 +61,8 @@ const application = document.querySelector('.application-content');
 const avatar = document.querySelector('.avatar');
 const btnLogOut = document.querySelector('.log-out');
 const sideBarMenu = document.querySelector('.sidebar-menu');
-console.log(alert, avatar, btnLogOut);
+const movementsDiv = document.querySelector('.movements-cards');
+console.log(alert, avatar, btnLogOut, movementsDiv);
 
 
 console.log(inputUsernameTransferModal, inputAmountTransferModal);
@@ -163,6 +164,23 @@ const displayConfirmationMsg = (imgPath, amount, userOwner) => {
     cancelConfirm();
 }
 
+const displayMovements = function (movs) {
+
+  movs.forEach((mov, i) => {
+      const html = `
+        <div class="movement-card">
+          <div class="movements-type-${mov > 0 ? 'deposit' : 'withdraw'}">
+            ${i + 1} ${mov > 0 ? 'DEPOSIT' : 'WITHDRAW'}
+          </div>
+          <div class="movement-amount">
+            <p> ${mov} €</p>
+          </div>
+        </div>`;
+    movementsDiv.insertAdjacentHTML('afterbegin', html)
+  });
+
+}
+
 
 application.style.display = 'none';
 sideBarMenu.style.display = 'none';
@@ -198,6 +216,9 @@ loginForm.addEventListener('submit', (e) => {
     displaySuccessAlert('Correct credentials!')
     // alertSuccess.style.transition = 'all 1s';
 
+    // display movements
+    displayMovements(currentAccount.movements);
+
     // display time
     const date = new Date()
     currentDate.textContent = `${days[date.getDay()].slice(0, 3)}. ${date.getDate()}
@@ -207,6 +228,8 @@ loginForm.addEventListener('submit', (e) => {
     displayWarningAlert('This account does not exist! Do you already have an account?', banner)
     // alert.style.transition = 'all 1s';
   };
+
+  inputUsername.value = inputPassword.value = '';
 })
 
 
@@ -223,8 +246,7 @@ btnCloseAlert.forEach(btn => {
 
 btnTransfer.addEventListener('click', (e) => {
   const btn = e.target.closest('div');
-  inputUsernameTransferModal.value = '';
-  inputAmountTransferModal.value = '';
+  inputUsernameTransferModal.value = inputAmountTransferModal.value = '';
 
   if (overlay.classList.contains('hidden') && modalTransfer.classList.contains('hidden')) {
     overlay.classList.remove('hidden');
@@ -236,21 +258,23 @@ btnTransfer.addEventListener('click', (e) => {
   }
 })
 
+let amount;
+let receiver;
+
 transferForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const user = inputUsernameTransferModal.value;
-  const amount = inputAmountTransferModal.value;
+  amount = inputAmountTransferModal.value;
 
   // get the user we are transfering money to
-  const userTo = findUser(user);
+  receiver = findUser(inputUsernameTransferModal.value);
   console.log(currentAccount);
 
-  if (userTo.username === currentAccount.username) {
+  if (receiver?.username === currentAccount.username) {
     // display alert
     displayWarningAlert('You cannot transfer money to yourself!');
 
-  } else if (userTo) {
+  } else if (receiver) {
     //move the transfer modal form up
     modalTransfer.classList.add('move-up');
     modalTransfer.classList.add('disabled-card');
@@ -260,7 +284,7 @@ transferForm.addEventListener('submit', (e) => {
     inputUsernameTransferModal.blur();
 
     //display confirmation message
-    displayConfirmationMsg(userTo.avatar, amount, userTo.owner);
+    displayConfirmationMsg(receiver.avatar, amount, receiver.owner);
   } else {
     console.log(`${user} does not exist!`)
     displayWarningAlert('Wrong credentials! This account does not exist')
@@ -281,7 +305,7 @@ overlay.addEventListener('click', (e) => {
 
 const cancelConfirm = function() {
   cancelConfirmDiv.addEventListener('click', (e) => {
-    console.log(e.target);
+
 
     if (e.target.closest('div').className === 'confirm') {
       modalTransfer.classList.remove('move-up', 'disabled-card');
@@ -290,6 +314,9 @@ const cancelConfirm = function() {
       overlay.classList.add('hidden');
 
       displaySuccessAlert('Operation fulfilled!');
+      currentAccount.movements.push(-+amount);
+      receiver.movements.push(+amount)
+
     } else {
       modalTransfer.classList.remove('move-up', 'disabled-card');
       modalTransfer.classList.add('hidden');
@@ -309,7 +336,5 @@ btnLogOut.addEventListener('click', (e) => {
   application.style.display = 'none';
   sideBarMenu.style.display = 'none';
   banner.classList.remove('hidden');
-  inputUsername.value = '';
-  inputPassword.value = '';
 })
 
