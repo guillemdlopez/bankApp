@@ -464,6 +464,16 @@ btnLogOut.addEventListener('click', (e) => {
   sideBarMenu.style.display = 'none';
   banner.classList.remove('hidden');
 
+  allBtns.forEach(btn => {
+    btn.classList.remove('active-btn');
+  })
+
+  allModals.forEach(modal => {
+    modal.classList.add('hidden');
+  })
+
+  overlay.classList.add('hidden');
+
   displaySuccessAlert('Logout succesfully!', banner);
   inputUsername.value = inputPassword.value = '';
 })
