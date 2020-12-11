@@ -71,6 +71,8 @@ const btnLoan = document.querySelector('.request-loan');
 const loanModal = document.querySelector('.loan-modal');
 const inputAmountLoan = document.querySelector('.input-loan-amount');
 const loanForm = document.querySelector('.loan-modal-form');
+const allBtns = document.querySelectorAll('.btn');
+const allModals = document.querySelectorAll('.modal');
 // console.log(alert, avatar, btnLogOut, movementsDiv, labelOwner, balanceLabel);
 
 
@@ -283,12 +285,18 @@ btnCloseAlert.forEach(btn => {
 })
 
 btnTransfer.addEventListener('click', (e) => {
-  // const btn = e.target.closest('div')
-  btnTransfer.classList.add('active-btn');
+  allBtns.forEach(btn => {
+    btn.classList.remove('active-btn');
+  })
+
+  allModals.forEach(modal => {
+    modal.classList.add('hidden');
+  })
 
   inputUsernameTransferModal.value = inputAmountTransferModal.value = '';
 
-  if (overlay.classList.contains('hidden') && modalTransfer.classList.contains('hidden')) {
+  if (!btnTransfer.classList.contains('active-btn')) {
+    btnTransfer.classList.add('active-btn');
     overlay.classList.remove('hidden');
     modalTransfer.classList.remove('hidden');
     inputUsernameTransferModal.focus();
@@ -349,21 +357,20 @@ transferForm.addEventListener('submit', (e) => {
   }
 })
 
-if (modalTransfer.classList.contains('disabled-card')) {
-  console.log('holaaaa');
-}
-
 overlay.addEventListener('click', (e) => {
-  if (!modalTransfer.classList.contains('hidden') && transferModalConfirmation) {
-    modalTransfer.classList.add('hidden');
+  allBtns.forEach(btn => {
+    btn.classList.remove('active-btn');
+  });
+
+  allModals.forEach(modal => {
+    modal.classList.add('hidden');
+  });
+
+  overlay.classList.add('hidden');
+
+  if (transferModalConfirmation) {
     modalTransfer.classList.remove('move-up', 'disabled-card');
     transferModalConfirmation.remove();
-    overlay.classList.add('hidden');
-    btnTransfer.classList.remove('active-btn');
-  } else if (!modalTransfer.classList.contains('hidden')) {
-    modalTransfer.classList.add('hidden');
-    overlay.classList.add('hidden');
-    btnTransfer.classList.remove('active-btn');
   }
 })
 
@@ -400,8 +407,15 @@ const cancelConfirm = function() {
 
 // REQUEST LOAN //
 btnLoan.addEventListener('click', (e) => {
-  if (!btnLoan.classList.contains('active-btn')) {
+  allBtns.forEach(btn => {
+    btn.classList.remove('active-btn');
+  })
 
+  allModals.forEach(modal => {
+    modal.classList.add('hidden');
+  })
+
+  if (!btnLoan.classList.contains('active-btn')) {
     btnLoan.classList.add('active-btn');
     overlay.classList.remove('hidden');
     loanModal.classList.remove('hidden');
