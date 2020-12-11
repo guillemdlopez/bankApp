@@ -67,6 +67,10 @@ const labelOwner = document.querySelector('.currentAccount-owner');
 const balanceLabel = document.querySelector('.total-balance');
 const labelExpenses = document.querySelector('.total-expenses');
 const labelIncome = document.querySelector('.total-income');
+const btnLoan = document.querySelector('.request-loan');
+const loanModal = document.querySelector('.loan-modal');
+const inputAmountLoan = document.querySelector('.input-loan-amount');
+const loanForm = document.querySelector('.loan-modal-form');
 // console.log(alert, avatar, btnLogOut, movementsDiv, labelOwner, balanceLabel);
 
 
@@ -173,10 +177,15 @@ const displayMovements = function (movs) {
   movementsDiv.innerHTML = '';
 
   movs.forEach((mov, i) => {
+    const type = mov > 0 ? 'deposit' : 'withdraw';
+    const icon = type === 'deposit' ? '<i class="fas fa-sort-up"></i>' : '<i class="fas fa-sort-down"></i>'
+    const date = mov === mov[movs.length - 1] ? 'NEW' : '';
+
       const html = `
         <div class="movement-card">
-          <div class="movements-type-${mov > 0 ? 'deposit' : 'withdraw'}">
-            ${i + 1} ${mov > 0 ? 'DEPOSIT' : 'WITHDRAW'}
+          <div class="movements-type-${type}">
+            ${icon}
+            <p>${date}</p>
           </div>
           <div class="movement-amount">
             <p> ${mov} €</p>
@@ -199,6 +208,7 @@ const calcDisplayExpenses = function (acc) {
 
 const calcDisplayIncome = function (acc) {
   const income = acc.movements.filter(mov => mov > 0).reduce((total, curr) => total + curr)
+  console.log(income);
   labelIncome.textContent = `${income.toFixed(2)} €`
 }
 
@@ -313,12 +323,17 @@ transferForm.addEventListener('submit', (e) => {
     return displayWarningAlert(`You cannot transfer ${amount === '' ? 'anything' : amount}. The amount must be bigger than 0`)
   }
 
+  if (amount.match(/[a-zA-Z]+/g)) {
+    return displayWarningAlert('You cannot include letters!')
+  }
+
 
   if (receiver?.username === currentAccount.username) {
     // display alert
-    displayWarningAlert('You cannot transfer money to yourself');
+    return displayWarningAlert('You cannot transfer money to yourself');
+  }
 
-  } else if (receiver) {
+  if (receiver) {
     //move the transfer modal form up
     modalTransfer.classList.add('move-up');
     modalTransfer.classList.add('disabled-card');
@@ -369,6 +384,7 @@ const cancelConfirm = function() {
 
       calcDisplayBalance(currentAccount);
       calcDisplayExpenses(currentAccount);
+      calcDisplayIncome(currentAccount);
 
     } else {
       modalTransfer.classList.remove('move-up', 'disabled-card');
@@ -381,6 +397,48 @@ const cancelConfirm = function() {
     }
   })
 }
+
+// REQUEST LOAN //
+btnLoan.addEventListener('click', (e) => {
+  if (!btnLoan.classList.contains('active-btn')) {
+
+    btnLoan.classList.add('active-btn');
+    overlay.classList.remove('hidden');
+    loanModal.classList.remove('hidden');
+    inputAmountLoan.focus();
+  } else {
+    btnLoan.classList.remove('active-btn');
+    overlay.classList.add('hidden');
+    loanModal.classList.add('hidden');
+  }
+});
+
+loanForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const amount = inputAmountLoan.value;
+  console.log(amount);
+
+  if (amount > currentAccount.balance ) {
+    return displayWarningAlert('Sorry, you cannot request an amount bigger than your current balance');
+  }
+
+  if (!amount > 0 || amount === '') return displayWarningAlert('The amount must be bigger than 0');
+
+  if (amount.match(/[a-zA-Z]/g)) return displayWarningAlert('The amount needs to be a number');
+
+  if (amount <= currentAccount.balance) {
+    currentAccount.movements.push(+amount);
+    displayMovements(currentAccount.movements);
+    calcDisplayBalance(currentAccount);
+    calcDisplayIncome(currentAccount);
+
+    btnLoan.classList.remove('active-btn');
+    overlay.classList.add('hidden');
+    loanModal.classList.add('hidden');
+
+    inputAmountLoan.value = '';
+  }
+})
 
 // LOG OUT //
 btnLogOut.addEventListener('click', (e) => {

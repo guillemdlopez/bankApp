@@ -15,13 +15,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,600;0,700;0,800;1,400&display=swap');
 
 :root {
-  --main-color: #844CFF;
-  --main-background-color: #F9F6FF;
+  --main-color: #5275FF;
+  --main-background-color: #F2F5FA;
+  --color-cards: #748F96;
   --color-icons: #949494;
+  --color-black: #272727;
+  --color-paragraphs: #2C314E;
   --color-hover-btns: #FFE55B;
-  --color-withdraws: #d82821;
-  --color-deposit: #3f9047;
-  --color-cards: #1399FE;
 
   /* FONTS */
   --main-font: 'Open Sans', sans-serif;
@@ -71,7 +71,6 @@ a {
 /* PAGE CONFIG */
 .application {
   display: flex;
-  background: #F3F3F3;
 }
 
 .application-content {
@@ -100,4 +99,15 @@ a {
 
 .movements {
   margin-top: 40px;
+  width: 50%;
+}
+
+.movements-illustration {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.application-img {
+  width: 48%;
 }

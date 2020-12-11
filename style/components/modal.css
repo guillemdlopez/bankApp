@@ -61,3 +61,10 @@
 .transfer-modal-confirmation .info-user {
   padding: 30px;
 }
+
+/* REQUEST MODAL */
+.loan-modal {
+  top: 237px;
+  left: 269px;
+}
+}

@@ -9,6 +9,13 @@
   padding: 8px 20px;
   margin-top: 20px;
   border-radius: 8px;
+  background: var(--color-cards);
+  color: white;
+}
+
+.account-card h1 {
+  font-size: 45px;
+  margin: 0;
 }
 
 .movements-cards {

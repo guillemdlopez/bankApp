@@ -98,15 +98,15 @@
       <p class="current-date small">San. 6 of December 2020, 19:00h</p>
       <div class="account-info-cards">
         <div class="account-card">
-          <p>Balance</p>
+          <p class="account-info-tag">Balance</p>
           <h1 class="total-balance">2.000, 00 €</h1>
         </div>
         <div class="account-card">
-          <p>Expenses</p>
+          <p class="account-info-tag">Expenses</p>
           <h1 class="total-expenses">-100, 00 €</h1>
         </div>
         <div class="account-card">
-          <p>Icome</p>
+          <p class="account-info-tag">Icome</p>
           <h1 class="total-income">3.000, 00 €</h1>
         </div>
       </div>
@@ -115,79 +115,94 @@
         <p>Correct credentials!</p>
         <i class="close-icon">&times</i>
       </div> -->
-      <div class="movements">
-        <h2>Movements</h2>
-
+        <div class="movements-illustration">
+          <div class="movements"> <!-- MOVEMENTS -->
+            <h2>Movements</h2>
+            <div class="movements-cards"> <!-- CARDS DIV -->
+    <!--           <div class="movement-card">
+                <div class="movements-type-withdraw">
+                  1 WITHDRAW
+                </div>
+                <div class="movement-amount">
+                  <p>-14,99 €</p>
+                </div>
+              </div>
+              <div class="movement-card">
+                <div class="movements-type-withdraw">
+                  1 WITHDRAW
+                </div>
+                <div class="movement-amount">
+                  <p>-14,99 €</p>
+                </div>
+              </div>
+              <div class="movement-card">
+                <div class="movements-type-deposit">
+                  1 DEPOSIT
+                </div>
+                <div class="movement-amount">
+                  <p>14,99 €</p>
+                </div>
+              </div>
+              <div class="movement-card">
+                <div class="movements-type-withdraw">
+                  1 WITHDRAW
+                </div>
+                <div class="movement-amount">
+                  <p>-20,99 €</p>
+                </div>
+              </div>
+              <div class="movement-card">
+                <div class="movements-type-deposit">
+                  1 DEPOSIT
+                </div>
+                <div class="movement-amount">
+                  <p>14,99 €</p>
+                </div>
+              </div>
+              <div class="movement-card">
+                <div class="movements-type-deposit">
+                  1 DEPOSIT
+                </div>
+                <div class="movement-amount">
+                  <p>14,99 €</p>
+                </div>
+              </div> -->
+            </div>
+          </div> <!-- MOVEMENTS -->
+          <img src="images/background-application2.svg" class="application-img" alt="">
         <!-- CARDS -->
-        <div class="movements-cards">
-<!--           <div class="movement-card">
-            <div class="movements-type-withdraw">
-              1 WITHDRAW
-            </div>
-            <div class="movement-amount">
-              <p>-14,99 €</p>
-            </div>
-          </div>
-          <div class="movement-card">
-            <div class="movements-type-withdraw">
-              1 WITHDRAW
-            </div>
-            <div class="movement-amount">
-              <p>-14,99 €</p>
-            </div>
-          </div>
-          <div class="movement-card">
-            <div class="movements-type-deposit">
-              1 DEPOSIT
-            </div>
-            <div class="movement-amount">
-              <p>14,99 €</p>
-            </div>
-          </div>
-          <div class="movement-card">
-            <div class="movements-type-withdraw">
-              1 WITHDRAW
-            </div>
-            <div class="movement-amount">
-              <p>-20,99 €</p>
-            </div>
-          </div>
-          <div class="movement-card">
-            <div class="movements-type-deposit">
-              1 DEPOSIT
-            </div>
-            <div class="movement-amount">
-              <p>14,99 €</p>
-            </div>
-          </div>
-          <div class="movement-card">
-            <div class="movements-type-deposit">
-              1 DEPOSIT
-            </div>
-            <div class="movement-amount">
-              <p>14,99 €</p>
-            </div>
-          </div> -->
-        </div>
-      </div>
-      <!-- MODALS -->
-      <div class="overlay hidden">
       </div>
 
+      <!-- MODALS -->
+      <div class="overlay hidden"></div>
+
+      <!-- MODAL TRANSFER MODAL -->
       <div class="modal transfer-modal hidden">
         <h2>Transfer money</h2>
-
-        <!-- TRANSFER MONEY MODAL -->
+        <!-- TRANSFER MONEY FORM -->
         <form action="" class="transfer-modal-form">
           <div class="form-input-row">
             <label>To whom?</label>
-            <input type="text" placeholder="username" class="input-username-transfer-modal">
+            <input type="text" placeholder="steven1973" class="input-username-transfer-modal">
           </div>
           <div class="form-input-row">
             <label class="label-amount">Amount</label>
-            <input type="text" placeholder="amount" class="input-amount-transfer-modal">
+            <input type="text" placeholder="500" class="input-amount-transfer-modal">
           </div>
           <input type="submit" value="Send" class="btn-submit">
+        </form>
+      </div>
+
+      <!-- MODAL REQUEST LOAN -->
+      <div class="modal loan-modal hidden">
+        <h2>Request a loan</h2>
+        <!-- REQUEST LOAN FORM -->
+        <form action="" class="loan-modal-form">
+          <div class="form-input-row">
+            <label>Amount</label>
+            <input type="text" placeholder="2000" class="input-loan-amount">
+          </div>
+          <input type="submit" value="Request" class="btn-submit">
         </form>
       </div>
 
@@ -212,24 +227,6 @@
           </div>
         </div>
       </div> -->
-
-      <!-- REQUEST A LOAN MODAL -->
-      <div class="modal request-loan-modal hidden">
-        <h2>Transfer money</h2>
-
-        <form action="">
-          <div class="form-input-row">
-            <label>To whom?</label>
-            <input type="text" placeholder="username" class="input">
-          </div>
-          <div class="form-input-row">
-            <label class="label-amount">Amount</label>
-            <input type="text" placeholder="amount" class="input-amount">
-          </div>
-          <input type="submit" value="Send" class="btn-submit">
-        </form>
-      </div>
-
     </div>
   </div>
 </body>
