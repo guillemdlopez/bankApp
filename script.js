@@ -7,7 +7,7 @@ const account1 = {
   username: 'guillemdlopez',
   pin: 1111,
   avatar: 'images/profile.jpg',
-  movements: [-200, 400, 600, -1000, 10, -230],
+  movements: [-200, 400, 600, 1000, 10, -230],
 }
 
 const account2 = {
@@ -31,7 +31,7 @@ const account4 = {
   username: 'steven1973',
   pin: 4444,
   avatar: 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Steven_Tyler_by_Gage_Skidmore_3.jpg',
-  movements: [200, 400, 600, 1000, 10, -29],
+  movements: [2000, 4000, 6000, -1000, 10, -29],
 }
 
 const accounts = [account1, account2, account3, account4]
@@ -63,8 +63,11 @@ const avatar = document.querySelector('.avatar');
 const btnLogOut = document.querySelector('.log-out');
 const sideBarMenu = document.querySelector('.sidebar-menu');
 const movementsDiv = document.querySelector('.movements-cards');
-const labelOwner = document.querySelector('.currentAccount-owner')
-console.log(alert, avatar, btnLogOut, movementsDiv, labelOwner);
+const labelOwner = document.querySelector('.currentAccount-owner');
+const balanceLabel = document.querySelector('.total-balance');
+const labelExpenses = document.querySelector('.total-expenses');
+const labelIncome = document.querySelector('.total-income');
+// console.log(alert, avatar, btnLogOut, movementsDiv, labelOwner, balanceLabel);
 
 
 console.log(inputUsernameTransferModal, inputAmountTransferModal);
@@ -80,7 +83,7 @@ const initBanner = function (el) {
 
 const displayForm = function (entries) {
   const [entry] = entries;
-  console.log(entry);
+
   if (entry.isIntersecting) {
       initBanner(formDiv);
       initBanner(bannerContentDiv);
@@ -181,9 +184,23 @@ const displayMovements = function (movs) {
         </div>`;
     movementsDiv.insertAdjacentHTML('afterbegin', html)
   });
-
 }
 
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((total, current) => total + current, 0);
+
+  balanceLabel.textContent = `${acc.balance.toFixed(2)} €`;
+}
+
+const calcDisplayExpenses = function (acc) {
+  const expenses = acc.movements.filter(mov => mov < 0).reduce((t, curr) => t + curr);
+  labelExpenses.textContent = `${expenses.toFixed(2)} €`;
+}
+
+const calcDisplayIncome = function (acc) {
+  const income = acc.movements.filter(mov => mov > 0).reduce((total, curr) => total + curr)
+  labelIncome.textContent = `${income.toFixed(2)} €`
+}
 
 application.style.display = 'none';
 sideBarMenu.style.display = 'none';
@@ -223,6 +240,15 @@ loginForm.addEventListener('submit', (e) => {
     // display movements
     displayMovements(currentAccount.movements);
 
+    //calc and display balance
+    calcDisplayBalance(currentAccount);
+
+    // calc and display expenses
+    calcDisplayExpenses(currentAccount);
+
+    // calc and display income
+    calcDisplayIncome(currentAccount);
+
     // display time
     const date = new Date()
     currentDate.textContent = `${days[date.getDay()].slice(0, 3)}. ${date.getDate()}
@@ -247,7 +273,9 @@ btnCloseAlert.forEach(btn => {
 })
 
 btnTransfer.addEventListener('click', (e) => {
-  // const btn = e.target.classList.contains('i');
+  // const btn = e.target.closest('div')
+  btnTransfer.classList.add('active-btn');
+
   inputUsernameTransferModal.value = inputAmountTransferModal.value = '';
 
   if (overlay.classList.contains('hidden') && modalTransfer.classList.contains('hidden')) {
@@ -257,6 +285,9 @@ btnTransfer.addEventListener('click', (e) => {
   } else {
     overlay.classList.add('hidden');
     modalTransfer.classList.add('hidden');
+    modalTransfer.classList.remove('disabled-card', 'move-up');
+    btnTransfer.classList.remove('active-btn');
+    transferModalConfirmation?.remove();
   }
 })
 
@@ -272,9 +303,20 @@ transferForm.addEventListener('submit', (e) => {
   receiver = findUser(inputUsernameTransferModal.value);
   console.log(currentAccount);
 
+  // ERRORS
+
+  if (amount >= currentAccount.balance) {
+    return displayWarningAlert('You cannot give away all your money or more than your current balance');
+  }
+
+  if (amount <= 0) {
+    return displayWarningAlert(`You cannot transfer ${amount === '' ? 'anything' : amount}. The amount must be bigger than 0`)
+  }
+
+
   if (receiver?.username === currentAccount.username) {
     // display alert
-    displayWarningAlert('You cannot transfer money to yourself!');
+    displayWarningAlert('You cannot transfer money to yourself');
 
   } else if (receiver) {
     //move the transfer modal form up
@@ -288,10 +330,13 @@ transferForm.addEventListener('submit', (e) => {
     //display confirmation message
     displayConfirmationMsg(receiver.avatar, amount, receiver.owner);
   } else {
-    console.log(`${user} does not exist!`)
     displayWarningAlert('Wrong credentials! This account does not exist')
   }
 })
+
+if (modalTransfer.classList.contains('disabled-card')) {
+  console.log('holaaaa');
+}
 
 overlay.addEventListener('click', (e) => {
   if (!modalTransfer.classList.contains('hidden') && transferModalConfirmation) {
@@ -299,32 +344,38 @@ overlay.addEventListener('click', (e) => {
     modalTransfer.classList.remove('move-up', 'disabled-card');
     transferModalConfirmation.remove();
     overlay.classList.add('hidden');
+    btnTransfer.classList.remove('active-btn');
   } else if (!modalTransfer.classList.contains('hidden')) {
     modalTransfer.classList.add('hidden');
     overlay.classList.add('hidden');
+    btnTransfer.classList.remove('active-btn');
   }
 })
 
 const cancelConfirm = function() {
   cancelConfirmDiv.addEventListener('click', (e) => {
 
-
     if (e.target.closest('div').className === 'confirm') {
       modalTransfer.classList.remove('move-up', 'disabled-card');
       modalTransfer.classList.add('hidden');
       transferModalConfirmation.remove();
       overlay.classList.add('hidden');
+      btnTransfer.classList.remove('active-btn');
 
       displaySuccessAlert('Operation fulfilled!');
       currentAccount.movements.push(-+amount);
       receiver.movements.push(+amount);
       displayMovements(currentAccount.movements);
 
+      calcDisplayBalance(currentAccount);
+      calcDisplayExpenses(currentAccount);
+
     } else {
       modalTransfer.classList.remove('move-up', 'disabled-card');
       modalTransfer.classList.add('hidden');
       transferModalConfirmation.remove();
       overlay.classList.add('hidden');
+      btnTransfer.classList.remove('active-btn');
 
       displayWarningAlert('Operation cancelled!')
     }
