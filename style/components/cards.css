@@ -29,10 +29,12 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  margin-bottom: 20px;
   background: white;
-  margin: 0px 0px 20px 0px;
-  border-radius: 8px;
+  border-bottom: 1px solid lightgray;
+}
+
+.movement-card:last-child {
+  border-bottom: none;
 }
 
 .movement-amount {

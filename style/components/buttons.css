@@ -10,7 +10,6 @@
 }
 
 .btn-start:hover {
-  background: #6425f7;
   transform: translateY(-14px);
   transition: transform 0.5s;
 }
@@ -31,7 +30,7 @@
   font-weight: 700;
 }
 
-.btn-log-in:hover {
+.btn-log-in:hover, .btn-submit:hover {
   background: var(--main-color);
   color: white;
 }

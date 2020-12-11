@@ -130,7 +130,7 @@ const displayWarningAlert = (msg, el = application) => {
   timer(2, customizedAlert);
 }
 
-const displaySuccessAlert = (msg) => {
+const displaySuccessAlert = (msg, el = application) => {
   const html = `
     <div class="alert-success customized-success-alert">
       <i class="fas fa-check-circle success"></i>
@@ -138,7 +138,7 @@ const displaySuccessAlert = (msg) => {
       <i class="close-icon">&times</i>
     </div>`;
 
-    application.insertAdjacentHTML('beforeend', html);
+    el.insertAdjacentHTML('beforeend', html);
     customizedAlert = document.querySelector('.customized-success-alert');
     timer(2, customizedAlert);
 }
@@ -346,7 +346,7 @@ transferForm.addEventListener('submit', (e) => {
     modalTransfer.classList.add('move-up');
     modalTransfer.classList.add('disabled-card');
 
-    //clear input fields
+    //unfocus
     inputAmountTransferModal.blur();
     inputUsernameTransferModal.blur();
 
@@ -441,6 +441,7 @@ loanForm.addEventListener('submit', (e) => {
   if (amount.match(/[a-zA-Z]/g)) return displayWarningAlert('The amount needs to be a number');
 
   if (amount <= currentAccount.balance) {
+    displaySuccessAlert('Operation fulfilled!');
     currentAccount.movements.push(+amount);
     displayMovements(currentAccount.movements);
     calcDisplayBalance(currentAccount);
@@ -463,6 +464,7 @@ btnLogOut.addEventListener('click', (e) => {
   sideBarMenu.style.display = 'none';
   banner.classList.remove('hidden');
 
+  displaySuccessAlert('Logout succesfully!', banner);
   inputUsername.value = inputPassword.value = '';
 })
 
