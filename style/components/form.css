@@ -23,6 +23,9 @@ input {
   width: 35%;
 }
 
+.transfer-modal-form, .loan-modal-form, .delete-account-modal-form {
+  margin-bottom: 20px;
+}
 
 /* TRANSFER MONEY */
 .form-input-row {

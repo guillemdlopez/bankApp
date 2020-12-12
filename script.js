@@ -7,7 +7,7 @@ const account1 = {
   username: 'guillemdlopez',
   pin: 1111,
   avatar: 'images/profile.jpg',
-  movements: [-200, 400, 600, 1000, 10, -230],
+  movements: [-200, 400, 600, 1000, 10, -230, -100],
 }
 
 const account2 = {
@@ -15,7 +15,7 @@ const account2 = {
   username: 'amoralro1996',
   pin: 2222,
   avatar: 'images/antonio-avatar.jpg',
-  movements: [50, 600, 1000, 34, 789, -500],
+  movements: [50, 600, 1000, 34, 789, -500, -100],
 }
 
 const account3 = {
@@ -23,7 +23,7 @@ const account3 = {
   username: 'annwilson',
   pin: 3333,
   avatar: 'https://i.pinimg.com/564x/09/e9/cb/09e9cb06ac99fc03065b2a032235b7c9.jpg',
-  movements: [200, 400, 600, 1000, 10, -340],
+  movements: [200, 400, 600, 1000, 10, -340, -600],
 }
 
 const account4 = {
@@ -31,7 +31,7 @@ const account4 = {
   username: 'steven1973',
   pin: 4444,
   avatar: 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Steven_Tyler_by_Gage_Skidmore_3.jpg',
-  movements: [2000, 4000, 6000, -1000, 10, -29],
+  movements: [2000, 4000, 6000, -1000, 10, -29, -1000],
 }
 
 const accounts = [account1, account2, account3, account4]
@@ -40,43 +40,65 @@ const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 
 const months = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
 
-const banner = document.querySelector('.banner');
-const formDiv = document.querySelector('.banner-form');
-const bannerContentDiv = document.querySelector('.banner-content-app-description');
+//////////////////// FORM ////////////////////
+const loginForm = document.querySelector('.login-form');
+const transferForm = document.querySelector('.transfer-modal-form');
+const loanForm = document.querySelector('.loan-modal-form');
+const deleteAccForm = document.querySelector('.delete-account-modal-form');
+
+
+//////////////////// INPUTS ////////////////////
 const inputUsername = document.querySelector('.input-username');
 const inputPassword = document.querySelector('.input-password');
-const btnGetStarted = document.querySelector('.btn-start');
-const loginForm = document.querySelector('.login-form');
-const welcomeMsg = document.querySelector('.welcome-message');
-const currentDate = document.querySelector('.current-date');
-const alert = document.querySelector('.alert');
-const alertSuccess = document.querySelector('.alert-success');
-const btnCloseAlert = document.querySelectorAll('.close-icon');
-const btnTransfer = document.querySelector('.transfer-money');
-const overlay = document.querySelector('.overlay');
-const modalTransfer = document.querySelector('.transfer-modal');
-const transferForm = document.querySelector('.transfer-modal-form');
 const inputUsernameTransferModal = document.querySelector('.input-username-transfer-modal');
 const inputAmountTransferModal = document.querySelector('.input-amount-transfer-modal');
-const application = document.querySelector('.application-content');
-const avatar = document.querySelector('.avatar');
-const btnLogOut = document.querySelector('.log-out');
-const sideBarMenu = document.querySelector('.sidebar-menu');
-const movementsDiv = document.querySelector('.movements-cards');
+const inputDeleteUsername = document.querySelector('.input-delete-username');
+const inputDeletePin = document.querySelector('.input-delete-pin');
+const inputAmountLoan = document.querySelector('.input-loan-amount');
+
+
+//////////////////// LABELS ////////////////////
+const welcomeMsg = document.querySelector('.welcome-message');
+const currentDate = document.querySelector('.current-date');
 const labelOwner = document.querySelector('.currentAccount-owner');
 const balanceLabel = document.querySelector('.total-balance');
 const labelExpenses = document.querySelector('.total-expenses');
 const labelIncome = document.querySelector('.total-income');
-const btnLoan = document.querySelector('.request-loan');
-const loanModal = document.querySelector('.loan-modal');
-const inputAmountLoan = document.querySelector('.input-loan-amount');
-const loanForm = document.querySelector('.loan-modal-form');
-const allBtns = document.querySelectorAll('.btn');
+
+
+//////////////////// MODALS ////////////////////
 const allModals = document.querySelectorAll('.modal');
-// console.log(alert, avatar, btnLogOut, movementsDiv, labelOwner, balanceLabel);
+const modalTransfer = document.querySelector('.transfer-modal');
+const loanModal = document.querySelector('.loan-modal');
+const deleteAccModal = document.querySelector('.delete-account-modal');
 
 
-console.log(inputUsernameTransferModal, inputAmountTransferModal);
+//////////////////// BUTTONS ////////////////////
+const allBtns = document.querySelectorAll('.btn');
+const btnGetStarted = document.querySelector('.btn-start');
+const btnCloseAlert = document.querySelectorAll('.close-icon');
+const btnTransfer = document.querySelector('.transfer-money');
+const btnLogOut = document.querySelector('.log-out');
+const btnLoan = document.querySelector('.request-loan');
+const btnDelete = document.querySelector('.delete-account');
+
+
+//////////////////// OTHER COMPONENTS ////////////////////
+const banner = document.querySelector('.banner');
+const alert = document.querySelector('.alert');
+const alertSuccess = document.querySelector('.alert-success');
+const overlay = document.querySelector('.overlay');
+const avatar = document.querySelector('.avatar');
+const sideBarMenu = document.querySelector('.sidebar-menu');
+
+
+//////////////////// DIVS ////////////////////
+const formDiv = document.querySelector('.banner-form');
+const bannerContentDiv = document.querySelector('.banner-content-app-description');
+const application = document.querySelector('.application-content');
+const movementsDiv = document.querySelector('.movements-cards');
+
+
 
 // FUNCTIONS
 
@@ -127,7 +149,7 @@ const displayWarningAlert = (msg, el = application) => {
 
   el.insertAdjacentHTML('beforeend', html);
   customizedAlert = document.querySelector('.customized-warning-alert');
-  timer(2, customizedAlert);
+  timer(3, customizedAlert);
 }
 
 const displaySuccessAlert = (msg, el = application) => {
@@ -140,7 +162,7 @@ const displaySuccessAlert = (msg, el = application) => {
 
     el.insertAdjacentHTML('beforeend', html);
     customizedAlert = document.querySelector('.customized-success-alert');
-    timer(2, customizedAlert);
+    timer(3, customizedAlert);
 }
 
 let cancelConfirmDiv;
@@ -217,6 +239,10 @@ const calcDisplayIncome = function (acc) {
 application.style.display = 'none';
 sideBarMenu.style.display = 'none';
 
+
+
+//////// EVENT HANDLERS ////////
+
 // LOG IN //
 btnGetStarted.addEventListener('click', (e) => {
   e.preventDefault()
@@ -240,7 +266,7 @@ loginForm.addEventListener('submit', (e) => {
     application.style.display = '';
     sideBarMenu.style.display = '';
 
-    // display welcome msg, name and image
+    // display welcome msg, name and avatar
     welcomeMsg.innerHTML = `Welcome back, <strong> ${currentAccount.owner.split(' ')[0]} </strong>`;
     labelOwner.textContent = `${currentAccount.owner}`
     avatar.src = `${currentAccount.avatar}`;
@@ -265,6 +291,7 @@ loginForm.addEventListener('submit', (e) => {
     const date = new Date()
     currentDate.textContent = `${days[date.getDay()].slice(0, 3)}. ${date.getDate()}
     ${months[date.getMonth()]} of ${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}h`
+    inputUsername.value = inputPassword.value = '';
 
   } else {
     displayWarningAlert('This account does not exist! Do you already have an account?', banner)
@@ -284,6 +311,7 @@ btnCloseAlert.forEach(btn => {
   })
 })
 
+// TRANSFER MONEY
 btnTransfer.addEventListener('click', (e) => {
   allBtns.forEach(btn => {
     btn.classList.remove('active-btn');
@@ -319,6 +347,7 @@ transferForm.addEventListener('submit', (e) => {
 
   // get the user we are transfering money to
   receiver = findUser(inputUsernameTransferModal.value);
+  console.log(receiver);
   console.log(currentAccount);
 
   // ERRORS
@@ -357,6 +386,7 @@ transferForm.addEventListener('submit', (e) => {
   }
 })
 
+// OVERLAY
 overlay.addEventListener('click', (e) => {
   allBtns.forEach(btn => {
     btn.classList.remove('active-btn');
@@ -374,6 +404,7 @@ overlay.addEventListener('click', (e) => {
   }
 })
 
+// CONFIRMATION MODAL
 const cancelConfirm = function() {
   cancelConfirmDiv.addEventListener('click', (e) => {
 
@@ -393,17 +424,16 @@ const cancelConfirm = function() {
       calcDisplayExpenses(currentAccount);
       calcDisplayIncome(currentAccount);
 
-    } else {
+    }  else {
       modalTransfer.classList.remove('move-up', 'disabled-card');
       modalTransfer.classList.add('hidden');
       transferModalConfirmation.remove();
       overlay.classList.add('hidden');
       btnTransfer.classList.remove('active-btn');
-
-      displayWarningAlert('Operation cancelled!')
     }
   })
 }
+
 
 // REQUEST LOAN //
 btnLoan.addEventListener('click', (e) => {
@@ -414,6 +444,8 @@ btnLoan.addEventListener('click', (e) => {
   allModals.forEach(modal => {
     modal.classList.add('hidden');
   })
+
+  inputAmountLoan.value = '';
 
   if (!btnLoan.classList.contains('active-btn')) {
     btnLoan.classList.add('active-btn');
@@ -427,10 +459,10 @@ btnLoan.addEventListener('click', (e) => {
   }
 });
 
+// LOAN FORM //
 loanForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const amount = inputAmountLoan.value;
-  console.log(amount);
 
   if (amount > currentAccount.balance ) {
     return displayWarningAlert('Sorry, you cannot request an amount bigger than your current balance');
@@ -450,16 +482,78 @@ loanForm.addEventListener('submit', (e) => {
     btnLoan.classList.remove('active-btn');
     overlay.classList.add('hidden');
     loanModal.classList.add('hidden');
-
-    inputAmountLoan.value = '';
   }
 })
+
+
+// DELETE ACCOUNT
+btnDelete.addEventListener('click', (e) => {
+
+  allBtns.forEach(btn => {
+    btn.classList.remove('active-btn');
+  })
+
+  allModals.forEach(modal => {
+    modal.classList.add('hidden');
+  })
+
+  inputDeleteUsername.value = inputDeletePin.value = '';
+
+  if(!btnDelete.classList.contains('active-btn')) {
+    btnDelete.classList.add('active-btn');
+    overlay.classList.remove('hidden');
+    deleteAccModal.classList.remove('hidden');
+    inputDeleteUsername.focus();
+  } else {
+    btnDelete.classList.remove('active-btn');
+    overlay.classList.add('hidden');
+    deleteAccModal.classList.add('hidden');
+  }
+})
+
+deleteAccForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const username = inputDeleteUsername.value;
+  const pin = inputDeletePin.value;
+
+  if ((username !== currentAccount.username && pin !== currentAccount.pin) ||
+    (username !== currentAccount.username || pin !== currentAccount.pin)) {
+    displayWarningAlert('Username or passwor are incorrect')
+  }
+
+  if (username === currentAccount.username && +pin === currentAccount.pin ) {
+    console.log(`Correct credentials`);
+    const index = accounts.findIndex(acc => acc.username === currentAccount.username)
+    console.log(index);
+    accounts.splice(index, 1);
+
+    allBtns.forEach(btn => {
+      btn.classList.remove('active-btn');
+    })
+
+    allModals.forEach(modal => {
+      modal.classList.add('hidden');
+    })
+
+    overlay.classList.add('hidden');
+
+    application.style.display = 'none';
+    sideBarMenu.style.display = 'none';
+    banner.classList.remove('hidden');
+
+    displaySuccessAlert('Your account was succesfully deleted, but you are still in our database ;)', banner);
+    inputDeleteUsername.value = inputDeletePin.value = '';
+  }
+})
+
 
 // LOG OUT //
 btnLogOut.addEventListener('click', (e) => {
   const icon = e.target.classList.contains('fa-power-off');
   if (!icon) return;
   currentAccount = '';
+
   application.style.display = 'none';
   sideBarMenu.style.display = 'none';
   banner.classList.remove('hidden');
@@ -475,6 +569,5 @@ btnLogOut.addEventListener('click', (e) => {
   overlay.classList.add('hidden');
 
   displaySuccessAlert('Logout succesfully!', banner);
-  inputUsername.value = inputPassword.value = '';
 })
 
