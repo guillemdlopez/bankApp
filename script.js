@@ -19,20 +19,21 @@ const account2 = {
 }
 
 const account3 = {
+  owner: 'Steven Tyler',
+  username: 'steven1973',
+  pin: 333,
+  avatar: 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Steven_Tyler_by_Gage_Skidmore_3.jpg',
+  movements: [2000, 4000, 6000, -1000, 10, -29, -1000],
+}
+
+const account4 = {
   owner: 'Ann Wilson',
   username: 'annwilson',
-  pin: 3333,
+  pin: 4444,
   avatar: 'https://i.pinimg.com/564x/09/e9/cb/09e9cb06ac99fc03065b2a032235b7c9.jpg',
   movements: [200, 400, 600, 1000, 10, -340, -600],
 }
 
-const account4 = {
-  owner: 'Steven Tyler',
-  username: 'steven1973',
-  pin: 4444,
-  avatar: 'https://upload.wikimedia.org/wikipedia/commons/a/a8/Steven_Tyler_by_Gage_Skidmore_3.jpg',
-  movements: [2000, 4000, 6000, -1000, 10, -29, -1000],
-}
 
 const accounts = [account1, account2, account3, account4]
 
@@ -40,7 +41,7 @@ const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 
 const months = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
 
-//////////////////// FORM ////////////////////
+//////////////////// FORMS ////////////////////
 const loginForm = document.querySelector('.login-form');
 const transferForm = document.querySelector('.transfer-modal-form');
 const loanForm = document.querySelector('.loan-modal-form');
@@ -144,7 +145,7 @@ const displayWarningAlert = (msg, el = application) => {
     <div class="alert customized-warning-alert">
       <i class="fas fa-exclamation-triangle warning"></i>
       <p>${msg}</p>
-      <i class="close-icon">&times</i>
+      <!-- <i class="close-icon">&times</i> -->
     </div>`;
 
   el.insertAdjacentHTML('beforeend', html);
@@ -157,7 +158,7 @@ const displaySuccessAlert = (msg, el = application) => {
     <div class="alert-success customized-success-alert">
       <i class="fas fa-check-circle success"></i>
       <p>${msg}</p>
-      <i class="close-icon">&times</i>
+      <!-- <i class="close-icon">&times</i> -->
     </div>`;
 
     el.insertAdjacentHTML('beforeend', html);
@@ -424,15 +425,17 @@ const cancelConfirm = function() {
       calcDisplayExpenses(currentAccount);
       calcDisplayIncome(currentAccount);
 
-    }  else {
+    }  else if (e.target.closest('div').className === 'cancel') {
       modalTransfer.classList.remove('move-up', 'disabled-card');
       modalTransfer.classList.add('hidden');
       transferModalConfirmation.remove();
       overlay.classList.add('hidden');
       btnTransfer.classList.remove('active-btn');
+
+      displayWarningAlert('Operation cancelled!')
     }
-  })
-}
+  });
+};
 
 
 // REQUEST LOAN //

@@ -23,12 +23,21 @@
   --color-paragraphs: #2C314E;
   --color-hover-btns: #FFE55B;
 
+  /* HOME PAGE COLORS */
+  --color-wrapper-featrue: #748F96;
+  --color-tags: #3C646C;
+  --color-quote-card: #303553;
+
+  /* SECONDARY BTN */
+  --seconday-btn: 1px solid #BBBBBB;
+  --color-secondary-btn: #BBBBBB;
+
   /* FONTS */
   --main-font: 'Open Sans', sans-serif;
 }
 
 h1, h2, h3, h4 {
-  font-weight: bold;
+  font-weight: normal;
 }
 
 body {
@@ -40,6 +49,10 @@ body {
 
 a {
   text-decoration: none;
+}
+
+p {
+  line-height: 35px;
 }
 
 
@@ -60,7 +73,7 @@ a {
 }
 
 .move-up {
-  transform: translateY(-115px);
+  transform: translateY(-189px);
   transition: all 0.2s;
 }
 
@@ -68,7 +81,7 @@ a {
   opacity: 0.7;
 }
 
-/* PAGE CONFIG */
+/* APP CONFIG */
 .application {
   display: flex;
 }
@@ -110,4 +123,45 @@ a {
 
 .application-img {
   width: 48%;
+}
+
+/* HOME PAGE CONFIG */
+.wrapper-feature {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-wrapper-featrue);
+  height: 400px;
+  padding: 40px;
+  margin-bottom: 200px;
+}
+
+.feature-title {
+  font-size: 36px;
+  color: white;
+  font-size: 36px;
+  color: white;
+  line-height: 45px;
+  margin-top: 10px;
+}
+
+.feature-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.feature-info {
+  width: 40%;
+}
+
+.feature-description {
+  color: white;
+}
+
+.image {
+  width: 50%;
+}
+
+.feature-img {
+  width: 120%;
 }

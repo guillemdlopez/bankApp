@@ -10,7 +10,7 @@
 /* TRANSFER MODAL */
 
 .transfer-modal {
-  top: 151px;
+  top: 224px;
   left: 268px;
 }
 
@@ -68,14 +68,14 @@
 
 /* REQUEST MODAL */
 .loan-modal {
-  top: 237px;
+  top: 301px;
   left: 268px;
 }
 
 /* DELETE ACCOUNT */
 
 .delete-account-modal {
-  top: 312px;
+  top: 373px;
   left: 268px;
 }
 }
