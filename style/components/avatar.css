@@ -19,10 +19,51 @@
 }
 
 .avatar-user-card {
-  border-radius: 20%;
+  border-radius: 50%;
+  position: absolute;
 }
 
 .transfer-modal-confirmation .avatar {
   width: 100px;
   height: 100px;
+}
+
+.avatar-effect {
+  transform: scale(1);
+  transition: transform 0.5s;
+}
+
+.avatar-1 {
+  top: 160px;
+  left: 170px;
+}
+
+.avatar-2 {
+  top: 280px;
+  left: 160px;
+}
+
+.avatar-3 {
+  top: 500px;
+  left: 380px;
+}
+
+.avatar-4 {
+  top: 650px;
+  left: 380px;
+}
+
+.avatar-5 {
+  top: 190px;
+  left: 660px;
+}
+
+.avatar-6 {
+  top: 360px;
+  right: 380px;
+}
+
+.avatar-7 {
+  top: 580px;
+  right: 170px;
 }

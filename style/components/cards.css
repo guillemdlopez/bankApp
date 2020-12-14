@@ -114,13 +114,6 @@
   width: 30%;
 }
 
-.try-yourself-card .btn-start {
-  width: 34%;
-  margin: 34px auto auto;
-  display: block;
-  padding: 18px 20px;
-}
-
 /* OPINION CARD */
 .opinion-card {
   background: #FFFFFF;
@@ -147,63 +140,12 @@
 
 /* USER CARD */
 .user-card {
-  background: #FFFFFF;
+/*  background: #FFFFFF;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   display: flex;
   width: 250px;
   align-items: center;
-  padding: 10px;
-  position: absolute;
-}
-
-.user-card p:first-child {
-  font-weight: bold;
-}
-
-.user-card p {
-  margin: 0;
-}
-
-.user-card p:last-child {
-  color: #606060;
-}
-
-.user-info {
-  margin-left: 10px;
-}
-
-.user-card-1 {
-  top: 160px;
-  left: 210px;
-}
-
-.user-card-2 {
-  top: 280px;
-  left: 180px;
-}
-
-.user-card-3 {
-  top: 500px;
-  left: 380px;
-}
-
-.user-card-4 {
-  top: 650px;
-  left: 410px;
-}
-
-.user-card-5 {
-  top: 190px;
-  left: 690px;
-}
-
-.user-card-6 {
-  top: 360px;
-  right: 170px;
-}
-
-.user-card-7 {
-  top: 560px;
-  right: 170px;
+  padding: 10px;*/
+  /* position: absolute; */
 }

@@ -41,6 +41,9 @@ const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 
 const months = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
 
+
+const homePage = document.querySelector('main');
+
 //////////////////// FORMS ////////////////////
 const loginForm = document.querySelector('.login-form');
 const transferForm = document.querySelector('.transfer-modal-form');
@@ -266,6 +269,7 @@ loginForm.addEventListener('submit', (e) => {
     banner.classList.add('hidden')
     application.style.display = '';
     sideBarMenu.style.display = '';
+    homePage.classList.add('hidden');
 
     // display welcome msg, name and avatar
     welcomeMsg.innerHTML = `Welcome back, <strong> ${currentAccount.owner.split(' ')[0]} </strong>`;
@@ -560,6 +564,7 @@ btnLogOut.addEventListener('click', (e) => {
   application.style.display = 'none';
   sideBarMenu.style.display = 'none';
   banner.classList.remove('hidden');
+  homePage.classList.remove('hidden');
 
   allBtns.forEach(btn => {
     btn.classList.remove('active-btn');
