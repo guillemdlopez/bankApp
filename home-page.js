@@ -12,11 +12,11 @@ modalUsersCounter.classList.add('hidden-effect');
 
 const countUsers = function () {
   const users = function () {
-    if (numUsers === 2000) {
+    if (numUsers === 300) {
       clearInterval(counter)
     }
 
-    console.log(numUsers++);
+    labelNumUsers.textContent = numUsers++;
   };
 
   let numUsers = 0;
@@ -56,7 +56,7 @@ const openUsersCounterModal = function() {
 }
 
 
-const loadImages = function (entries) {
+const loadImages = function (entries, observer) {
   const [entry] = entries;
   console.log(entry);
   if (entry.isIntersecting) {
@@ -117,6 +117,8 @@ const loadImages = function (entries) {
       return openUsersCounterModal()
     })
   }
+
+  observer.unobserve(mapSection);
 }
 
 const mapSectionObserver = new IntersectionObserver(loadImages, {
@@ -125,3 +127,16 @@ const mapSectionObserver = new IntersectionObserver(loadImages, {
 })
 
 mapSectionObserver.observe(mapSection)
+
+
+const btnStart = document.querySelectorAll('.btn-start');
+
+btnStart.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  banner.scrollIntoView({behavior: 'smooth'});
+
+  });
+});
+console.log(btnStart);
