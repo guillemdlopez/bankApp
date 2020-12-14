@@ -19,6 +19,13 @@
   width: 25%;
 }
 
+.try-yourself-card .btn-start, .modal-counter-users .btn-start {
+  width: 34%;
+  margin: 34px auto auto;
+  display: block;
+  padding: 18px 20px;
+}
+
 .btn-log-in, .btn-submit {
   border: 1px solid var(--main-color);
   width: 100%;
