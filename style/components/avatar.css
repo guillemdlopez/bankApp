@@ -1,10 +1,21 @@
-.avatar {
+.avatar, .avatar-opinion-card {
   background: gray;
   width: 80px;
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
   object-position: top;
+}
+
+.avatar-opinion-card {
+  margin: 0 auto;
+  width: 90px;
+  height: 90px;
+}
+
+.avatar-opinion-card {
+  border: 4px solid #FF9900;
+  box-sizing: border-box;
 }
 
 .transfer-modal-confirmation .avatar {

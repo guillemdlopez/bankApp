@@ -40,3 +40,113 @@
 .movement-amount {
   font-weight: 600;
 }
+
+/* REASON CARDS */
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reason-cards {
+  width: 48%;
+}
+
+.reason-card {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px 30px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.reason-card:last-child {
+  margin: 20px 0px 0px 0px;
+}
+
+.reason-card-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.reason-card-content i {
+  color: white;
+  background: var(--background-banner);
+  padding: 10px;
+  border-radius: 50%;
+  margin-right: 20px;
+  font-size: 22px;
+}
+
+.reason-card-content p:last-child {
+  margin-bottom: 0px;
+}
+
+.card-title {
+  font-weight: normal;
+  font-family: var(--title-font);
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.try-yourself-card {
+  background: var(--background-banner);
+  text-align: center;
+  width: 40%;
+  border-radius: 10px;
+  padding: 40px 0px;
+  box-shadow: 0px 4px 40px rgba(0,0,0,0.25);
+}
+
+.try-yourself-card p:first-child {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.try-yourself-card p {
+  color: #C1C1C1;
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.try-yourself-card img {
+  width: 30%;
+}
+
+.try-yourself-card .btn-start {
+  width: 34%;
+  margin: 34px auto auto;
+  display: block;
+  padding: 18px 20px;
+}
+
+/* OPINION CARD */
+.opinion-card {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 30%;
+  text-align: center;
+  position: relative;
+  padding: 80px 0px 40px 0px;
+}
+
+.opinion-card i {
+  position: absolute;
+  left: 28px;
+  top: 28px;
+  color: var(--main-color);
+  font-size: 24px;
+}
+
+.name-user {
+  font-family: var(--title-font);
+  font-weight: normal;
+}
+
+/* USER CARD */
+.user-card {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
