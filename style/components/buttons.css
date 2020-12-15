@@ -16,7 +16,7 @@
   margin-left: 20px;
 }
 
-.btn-start:hover {
+.btn-start:hover, .btn-data:hover {
   transform: translateY(-14px);
   transition: transform 0.5s;
 }
