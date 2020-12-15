@@ -138,45 +138,58 @@
   font-weight: normal;
 }
 
-/* USER CARD */
-.user-card {
-/*  background: #FFFFFF;
-  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-  display: flex;
-  width: 250px;
-  align-items: center;
-  padding: 10px;*/
-  /* position: absolute; */
-}
-
 /* NUMBERS CARD */
 .numbers-card {
   display: flex;
   justify-content: space-between;
   border-radius: 20px;
-  background: var(--background-dark-cards);
+  background: white;
   box-shadow: var(--shadow-cards);
   padding: 10px 60px;
   text-align: center;
+  width: 60%;
+  margin-top: 90px
 }
 
 .numbers-card p {
-  color: #C5C5C5;
+  color: #676767;
 }
 
 .number {
+  color: #e4e4e4;
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 0px;
 }
 
-.number-card-countries,
-.number-card-users,
-.number-card-winners,
-.number-card-losers {
-  border-right: 1px solid #7A7A7A;
-  padding-right: 60px;
-  /*padding: 10px 0px;*/
+
+/* USER-CARDS */
+.user-card {
+  background: #FFFFFF;
+  box-shadow: var(--shadow-cards);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
+.user-card h2 {
+  font-weight: bold;
+}
+
+.user-card-img {
+  width: 30%;
+  border-radius: 20px 0px 0px 20px;
+}
+
+.user-card-info {
+  padding: 30px 60px;
+}
+
+.user-credentials {
+  margin-top: 40px;
+}
+
+.user-credentials p {
+  margin-bottom: 0px;
+}

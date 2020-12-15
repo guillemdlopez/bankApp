@@ -222,20 +222,28 @@ section {
 
 #numbers {
   background: url(../images/background-numbers.png);
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: right;
   height: 90vh;
 }
 
-.slogan {
-  text-align: center;
-  /*font-weight: bold;*/
-  font-size: 48px;
-  margin-bottom: 0px;
+.numbers-description {
+  width: 50%;
 }
 
-.slogan-btn {
-  margin-top: 256px;
+/* ACCOUNTS */
+.user-accounts {
+  text-align: center;
+  padding-left: 0px;
+  margin-top: 40px;
 }
+
+.user-accounts li {
+  display: inline-block;
+  margin-right: 60px;
+  cursor: pointer;
+}
+
+
 

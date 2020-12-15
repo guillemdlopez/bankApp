@@ -46,6 +46,25 @@
   color: white;
 }
 
+.btn-hack {
+  width: 155px;
+  border: 1px solid white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  position: absolute;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  bottom: 14px;
+  left: 86px;
+}
+
+.btn-hack:hover {
+  background: white;
+  color: var(--color-paragraphs);
+  transition: all 0.5s;
+}
+
 /* APPLICATION */
 /*.main-buttons {
   margin-top: 50%;
