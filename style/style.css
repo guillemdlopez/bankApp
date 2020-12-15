@@ -250,5 +250,11 @@ section {
   cursor: pointer;
 }
 
+/* CREATE ACCOUNT */
+.form-new-user-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 

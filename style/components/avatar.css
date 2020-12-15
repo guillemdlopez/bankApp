@@ -1,4 +1,4 @@
-.avatar, .avatar-opinion-card, .avatar-user-card {
+.avatar, .avatar-opinion-card, .avatar-user-card, .avatar-new-user {
   background: gray;
   width: 80px;
   height: 80px;
@@ -13,7 +13,12 @@
   height: 90px;
 }
 
-.avatar-opinion-card {
+.avatar-new-user {
+  width: 110px;
+  height: 110px;
+}
+
+.avatar-opinion-card, .avatar-new-user {
   border: 4px solid #FF9900;
   box-sizing: border-box;
 }

@@ -548,6 +548,7 @@ deleteAccForm.addEventListener('submit', (e) => {
     application.style.display = 'none';
     sideBarMenu.style.display = 'none';
     banner.classList.remove('hidden');
+    homePage.classList.remove('hidden');
 
     displaySuccessAlert('Your account was succesfully deleted, but you are still in our database ;)', banner);
     inputDeleteUsername.value = inputDeletePin.value = '';

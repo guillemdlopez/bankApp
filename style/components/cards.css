@@ -196,3 +196,51 @@
 .user-credentials p {
   margin-bottom: 0px;
 }
+
+/* NEW USER CARD */
+
+.new-user-card {
+  box-shadow: var(--shadow-cards);
+  border-radius: 8px;
+  width: 40%;
+  padding: 20px;
+}
+
+.avatar-user-credentials {
+  display: flex;
+  align-items: center;
+  background: var(--background-banner);
+  border-radius: 8px;
+  padding: 10px 30px;
+}
+
+.avatar-user-credentials p {
+  color: white;
+}
+
+.new-user-credentials p {
+  margin: 0px 0px 0px 20px;
+}
+
+.new-user-credentials > p {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.username-pin > p {
+  margin-bottom: 10px;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btns .btn-secondary {
+  margin-left: 0px;
+}
+
+.btns .btn-secondary, .btns .btn-start {
+  padding: 18px 44px;
+}

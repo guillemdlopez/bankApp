@@ -31,3 +31,21 @@ input {
 .form-input-row {
   margin-bottom: 20px;
 }
+
+
+/* CREATE ACCOUNT */
+.create-account-form {
+  width: 40%;
+  box-shadow: var(--shadow-cards);
+  padding: 20px 40px;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+.create-account-form h4 {
+  text-align: center;
+}
+
+.create-account-form .btn-submit {
+  margin-bottom: 40px;
+}

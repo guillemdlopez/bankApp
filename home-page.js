@@ -9,8 +9,10 @@ const allUsers = document.querySelectorAll('.user');
 const userCards = document.querySelectorAll('.user-card')
 const allUsersDiv = document.querySelector('.user-accounts');
 const btnsHack = document.querySelectorAll('.btn-hack');
-const btnData = document.querySelector('.btn-data');
+const btnData = document.querySelector('.btn-secondary');
 const sectionData = document.getElementById('test-data');
+
+
 
 console.log(homePage, btnsHack);
 
@@ -177,5 +179,44 @@ btnsHack.forEach(btn => {
     inputUsername.value = username.split(' ').slice(1).join();
     inputPassword.value = pin.split(' ').slice(1).join();
   })
+})
+
+const nameNewUser = document.querySelector('.new-user-name');
+const usernameNewUser = document.querySelector('.new-user-username');
+const pinNewUser = document.querySelector('.new-user-pin');
+const confirmedPinNewUser = document.querySelector('.new-user-confirm-pin');
+
+const createAccountForm = document.querySelector('.create-account-form');
+const newUserName = document.querySelector('.new-user-credentials-name');
+const newUserUsername = document.querySelector('.new-user-credentials-username');
+const newUserPin = document.querySelector('.new-user-credentials-pin');
+
+
+
+createAccountForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  console.log(nameNewUser.value, usernameNewUser.value, pinNewUser.value, confirmedPinNewUser.value)
+
+
+  if (pinNewUser.value === confirmedPinNewUser.value) {
+    console.log('correct!')
+
+    newUserName.innerHTML = `<strong>${nameNewUser.value}</strong>`;
+    newUserUsername.innerHTML = `<strong>username:</strong> ${usernameNewUser.value}`;
+    newUserPin.innerHTML = `<strong>pin:</strong> ${pinNewUser.value}`;
+
+    const newAccount = {
+      owner: nameNewUser.value,
+      username: usernameNewUser.value,
+      pin: pinNewUser.value,
+      avatar: 'images/profile.jpg',
+      movements: [],
+    }
+
+    accounts.push(newAccount);
+
+    displaySuccessAlert('Correct credentials!', document.getElementById('create-account'));
+  }
 })
 

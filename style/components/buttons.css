@@ -1,4 +1,4 @@
-.btn-start, .btn-data {
+.btn-start, .btn-secondary {
   background: var(--main-color);
   color: white;
   padding: 10px 24px;
@@ -9,14 +9,14 @@
   transition: all 0.5s;
 }
 
-.btn-data {
+.btn-secondary {
   background: none;
   border: var(--seconday-btn);
   color: var(--color-secondary-btn);
   margin-left: 20px;
 }
 
-.btn-start:hover, .btn-data:hover {
+.btn-start:hover, .btn-secondary:hover {
   transform: translateY(-14px);
   transition: transform 0.5s;
 }
@@ -46,6 +46,7 @@
   background: white;
   cursor: pointer;
   font-weight: 700;
+  text-align: center;
 }
 
 .btn-log-in:hover, .btn-submit:hover {
@@ -55,21 +56,15 @@
 
 .btn-hack {
   width: 155px;
-  border: 1px solid var(--color-secondary-btn);
+  border: 1px solid var(--color-paragraphs);
   padding: 14px 20px;
   border-radius: 8px;
   position: absolute;
   display: inline-block;
-  color: var(--color-secondary-btn);
+  color: var(--color-paragraphs);
   text-align: center;
   bottom: 14px;
   right: 15px;
-}
-
-.btn-hack:hover {
-  border: 1px solid var(--color-paragraphs);
-  color: var(--color-paragraphs);
-  transition: all 0.5s;
 }
 
 /* APPLICATION */

@@ -98,6 +98,10 @@
   border-radius: 0px 0px 7px 0px;
 }
 
+.confirm p {
+  color: white;
+}
+
 .transfer-modal-confirmation .info-user {
   padding: 30px;
 }
