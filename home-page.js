@@ -5,6 +5,8 @@ const userCards = document.querySelectorAll('.user-card')
 const mapOverlay = document.querySelector('.overlay-map');
 const modalUsersCounter = document.querySelector('.modal-counter-users');
 const labelNumUsers = document.querySelector('.num-users');
+const btnStart = document.querySelectorAll('.btn-start');
+
 console.log(homePage, userCards, mapOverlay, labelNumUsers);
 
 mapOverlay.classList.add('hidden');
@@ -62,7 +64,6 @@ const loadImages = function (entries, observer) {
   if (entry.isIntersecting) {
     createUserAvatar('images/avatar-user-card-1.jpg', 1).then(img => {
       console.log('Image loaded!');
-
       return wait(4);
     })
     .then(() => {
@@ -116,20 +117,19 @@ const loadImages = function (entries, observer) {
 
       return openUsersCounterModal()
     })
-  }
 
-  observer.unobserve(mapSection);
+    observer.unobserve(entry.target);
+  }
 }
 
 const mapSectionObserver = new IntersectionObserver(loadImages, {
   root: null,
-  threshold: 0.30,
+  threshold: 0.10,
 })
 
 mapSectionObserver.observe(mapSection)
 
 
-const btnStart = document.querySelectorAll('.btn-start');
 
 btnStart.forEach(btn => {
   btn.addEventListener('click', (e) => {

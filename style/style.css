@@ -25,6 +25,10 @@
   --color-paragraphs: #474747;
   --color-hover-btns: #FFE55B;
 
+  /* CARDS */
+  --background-dark-cards: #303553;
+  --shadow-cards: 0px 4px 40px rgba(0, 0, 0, 0.25);
+
   /* HOME PAGE COLORS */
   --color-wrapper-featrue: #748F96;
   --color-tags: #474E75;
@@ -33,6 +37,9 @@
   /* SECONDARY BTN */
   --seconday-btn: 1px solid #BBBBBB;
   --color-secondary-btn: #BBBBBB;
+
+  /* BACKGROUND IMGS */
+  --linear-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(48, 53, 83, 0.3) 0.01%),;
 
   /* FONTS */
   --main-font: 'Open Sans', sans-serif;
@@ -211,4 +218,24 @@ section {
   position: relative;
 }
 
+/* NUMBERS */
+
+#numbers {
+  background: url(../images/background-numbers.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  height: 90vh;
+}
+
+.slogan {
+  text-align: center;
+  /*font-weight: bold;*/
+  font-size: 48px;
+  margin-bottom: 0px;
+}
+
+.slogan-btn {
+  margin-top: 256px;
+}
 

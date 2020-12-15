@@ -13,4 +13,5 @@
 .overlay-map {
   background: rgba(250,250,250,0.1);
   width: 100%;
+  backdrop-filter: blur(6px);
 }

@@ -149,3 +149,34 @@
   padding: 10px;*/
   /* position: absolute; */
 }
+
+/* NUMBERS CARD */
+.numbers-card {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  background: var(--background-dark-cards);
+  box-shadow: var(--shadow-cards);
+  padding: 10px 60px;
+  text-align: center;
+}
+
+.numbers-card p {
+  color: #C5C5C5;
+}
+
+.number {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.number-card-countries,
+.number-card-users,
+.number-card-winners,
+.number-card-losers {
+  border-right: 1px solid #7A7A7A;
+  padding-right: 60px;
+  /*padding: 10px 0px;*/
+}
+

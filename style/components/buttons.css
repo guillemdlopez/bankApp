@@ -2,7 +2,7 @@
   background: var(--main-color);
   color: white;
   padding: 10px 24px;
-  border-radius: 10px;
+  border-radius: 4px;
   display: inline-block;
   font-weight: 600;
   text-align: center;
@@ -19,11 +19,15 @@
   width: 25%;
 }
 
-.try-yourself-card .btn-start, .modal-counter-users .btn-start {
+.try-yourself-card .btn-start, .modal-counter-users .btn-start, #numbers .btn-start {
   width: 34%;
   margin: 34px auto auto;
   display: block;
   padding: 18px 20px;
+}
+
+#numbers .btn-start {
+  width: 20%;
 }
 
 .btn-log-in, .btn-submit {
