@@ -1,13 +1,18 @@
 'use strict';
 
 const mapSection = document.getElementById('map')
-const userCards = document.querySelectorAll('.user-card')
 const mapOverlay = document.querySelector('.overlay-map');
 const modalUsersCounter = document.querySelector('.modal-counter-users');
 const labelNumUsers = document.querySelector('.num-users');
 const btnStart = document.querySelectorAll('.btn-start');
+const allUsers = document.querySelectorAll('.user');
+const userCards = document.querySelectorAll('.user-card')
+const allUsersDiv = document.querySelector('.user-accounts');
+const btnsHack = document.querySelectorAll('.btn-hack');
+const btnData = document.querySelector('.btn-data');
+const sectionData = document.getElementById('test-data');
 
-console.log(homePage, userCards, mapOverlay, labelNumUsers);
+console.log(homePage, btnsHack);
 
 mapOverlay.classList.add('hidden');
 modalUsersCounter.classList.add('hidden-effect');
@@ -139,4 +144,38 @@ btnStart.forEach(btn => {
 
   });
 });
-console.log(btnStart);
+
+btnData.addEventListener('click', (e) => {
+  e.preventDefault()
+
+  sectionData.scrollIntoView({behavior: 'smooth'})
+})
+
+allUsersDiv.addEventListener('click', (e) => {
+  if (!e.target.classList.contains('user')) return;
+
+  allUsers.forEach(user => user.classList.remove('active-link'));
+
+  e.target.classList.add('active-link');
+  const data = e.target.dataset.user;
+
+  userCards.forEach(card => card.classList.add('hidden'));
+
+  const card = document.querySelector(`.user-card-${data}`);
+  card.classList.remove('hidden');
+})
+
+btnsHack.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const user = e.currentTarget.dataset.user;
+    const username = document.querySelector(`.user-credentials-username-${user}`).textContent;
+    const pin = document.querySelector(`.user-credentials-pin-${user}`).textContent;
+
+    banner.scrollIntoView({behavior: 'smooth'})
+
+    inputUsername.value = username.split(' ').slice(1).join();
+    inputPassword.value = pin.split(' ').slice(1).join();
+  })
+})
+

@@ -142,7 +142,7 @@
 .numbers-card {
   display: flex;
   justify-content: space-between;
-  border-radius: 20px;
+  border-radius: 10px;
   background: white;
   box-shadow: var(--shadow-cards);
   padding: 10px 60px;
@@ -167,10 +167,11 @@
 .user-card {
   background: #FFFFFF;
   box-shadow: var(--shadow-cards);
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   position: relative;
+  height: 400px;
 }
 
 .user-card h2 {
@@ -179,7 +180,9 @@
 
 .user-card-img {
   width: 30%;
-  border-radius: 20px 0px 0px 20px;
+  border-radius: 10px 0px 0px 10px;
+  height: 100%;
+  object-fit: cover;
 }
 
 .user-card-info {
